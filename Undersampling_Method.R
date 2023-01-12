@@ -30,10 +30,11 @@ nrow(databank_train)
 set.seed(200)
 down_train<-downSample(databank_train[, -ncol(databank_train)], databank_train$y, list=FALSE, yname="Class")
 up_train<-upSample()
+
 #yes-no distribution
 table(databank_train$y) #before undersampling
 table(down_train$Class) #after undersampling
 
-##perform undersampling with ROSE
+##perform undersampling with ROSE (Random Over Sampling Examples) package
 data_balance_under<-ovun.sample(y~., data=databank_train, method="under", N=3248*2, seed=1)$data
 table(data_balance_under$y)
